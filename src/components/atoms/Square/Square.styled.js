@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const StyledSquareContainer = styled.div`
-  width: 100%;
-  height: auto;
+export const StyledSquareContainer = styled.div(({ width, height }) => css`
+  width: ${width};
+  height: ${height};
   border: 1px solid #ccc;
-`;
+`);

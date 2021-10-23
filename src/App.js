@@ -1,8 +1,11 @@
-import { Square } from '@components/atoms/Square/Square.component';
+import { Board } from '@components/molecules/Board/Board.component';
 function App() {
   return (
     <div>
-    <Square />
+    <Board
+      x={10}
+      y={10}
+    />
     </div>
   );
 }
