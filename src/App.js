@@ -1,9 +1,8 @@
-// import { Square } from ''
-require('module-alias/register');
+import { Square } from '@components/atoms/Square/Square.component';
 function App() {
   return (
     <div>
-    test
+    <Square />
     </div>
   );
 }
