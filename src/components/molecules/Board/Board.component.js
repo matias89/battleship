@@ -1,10 +1,13 @@
 import { Square } from '@components/atoms/Square/Square.component';
+import { Ship } from '@components/atoms/Ship/Ship.component'; // Analizar: Mover al organism correspondiente de esta pantalla 
+import { sizes } from '@constants';
 import {
   StyledBoardContainer,
   StyledBoardRow,
 } from './Board.styled';
 
 export const Board = ({ x, y }) => {
+  const { square: { width, height } } = sizes;
   const board = [];
   for (let i = 0; i < x; i++) {
     board[i] = [];
@@ -13,13 +16,26 @@ export const Board = ({ x, y }) => {
     }
   }
   return (
+    <>
+    <Ship type="submarine" />
+    <hr />
+    <Ship type="carrier" />
+    <hr />
+    <Ship type="cruise" />
+    <hr />
+    <Ship type="submarine" position="h" />
+    <hr />
+    <Ship type="carrier" position="h" />
+    <hr />
+    <Ship type="cruise" position="h" />
+    <hr />
     <StyledBoardContainer>
       {board.map((row, key) => (
         <StyledBoardRow key={key}>
           {row.map((col, index) => (
             <Square
-              width="70px"
-              height="70px"
+              width={width}
+              height={height}
               key={index}
               status={'HIT'} // analizar si acá podrian estar los estados ...
             />
@@ -27,5 +43,6 @@ export const Board = ({ x, y }) => {
         </StyledBoardRow>
       ))}
     </StyledBoardContainer>
+    </>
   );
 };
