@@ -1,11 +1,8 @@
-import { Board } from '@components/molecules/Board/Board.component';
+import Main from '@components/templates/Main/Main.component';
 function App() {
   return (
     <div>
-    <Board
-      x={10}
-      y={10}
-    />
+    <Main />
     </div>
   );
 }

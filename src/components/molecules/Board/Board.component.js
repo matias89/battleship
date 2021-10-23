@@ -16,19 +16,6 @@ export const Board = ({ x, y }) => {
     }
   }
   return (
-    <>
-    <Ship type="submarine" />
-    <hr />
-    <Ship type="carrier" />
-    <hr />
-    <Ship type="cruise" />
-    <hr />
-    <Ship type="submarine" position="h" />
-    <hr />
-    <Ship type="carrier" position="h" />
-    <hr />
-    <Ship type="cruise" position="h" />
-    <hr />
     <StyledBoardContainer>
       {board.map((row, key) => (
         <StyledBoardRow key={key}>
@@ -43,6 +30,5 @@ export const Board = ({ x, y }) => {
         </StyledBoardRow>
       ))}
     </StyledBoardContainer>
-    </>
   );
 };
