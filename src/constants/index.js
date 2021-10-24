@@ -10,4 +10,5 @@ export const colors = {
   danger: '#CF513D',
   info: '#53D3F2',
   primary: '#305ED7',
+  warning: '#F7CA2C',
 };
