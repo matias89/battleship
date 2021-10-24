@@ -8,3 +8,10 @@ export const savePlayerName = (playerName) => ({
     playerName,
   }
 });
+
+export const endGame = (status) => ({
+  type: 'END_GAME',
+  payload: {
+    status,
+  }
+});

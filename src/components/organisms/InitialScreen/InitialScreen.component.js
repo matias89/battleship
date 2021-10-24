@@ -47,6 +47,7 @@ export const InitialScreen = () => {
         <Button
           onClick={handleOnStart}
           disabled={playerName.length < 4}
+          variant="primary"
         >START GAME</Button>
       </StyledDataContainer>
     </StyledInitialScreenContainer>

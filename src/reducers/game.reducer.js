@@ -1,5 +1,5 @@
 const initialState = {
-  status: null, // InProgress - Finished
+  status: null, // InProgress - Finished - Surrender
   player: {
     name: '',
   }
@@ -20,6 +20,12 @@ export const gameReducer = (state = initialState, action) => {
         player: {
           name: action.payload.playerName,
         }
+      }
+    }
+    case 'END_GAME': {
+      return {
+        ...state,
+        status: action.payload.status,
       }
     }
     default:
