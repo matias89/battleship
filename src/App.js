@@ -1,9 +1,10 @@
+import Providers from '@components/Providers/Providers';
 import Main from '@components/templates/Main/Main.component';
 function App() {
   return (
-    <div>
+    <Providers>
     <Main />
-    </div>
+    </Providers>
   );
 }
 

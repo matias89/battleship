@@ -1,5 +1,5 @@
 import { Square } from '@components/atoms/Square/Square.component';
-import { Ship } from '@components/atoms/Ship/Ship.component'; // Analizar: Mover al organism correspondiente de esta pantalla 
+// import { Ship } from '@components/atoms/Ship/Ship.component'; // Analizar: Mover al organism correspondiente de esta pantalla 
 import { sizes } from '@constants';
 import {
   StyledBoardContainer,

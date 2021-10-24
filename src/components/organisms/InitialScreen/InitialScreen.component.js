@@ -1,3 +1,6 @@
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { startGame, savePlayerName } from '@actions/game.actions'
 import { Input } from '@components/atoms/Input/Input.component';
 import { Button } from '@components/atoms/Button/Button.component';
 import { Board } from '@components/molecules/Board/Board.component';
@@ -9,6 +12,17 @@ import {
 } from './InitialScreen.styled';
 
 export const InitialScreen = () => {
+  const [playerName, setPlayerName] = useState('');
+  const dispatch = useDispatch();
+  const handleOnStart = () => {
+    if (playerName.length > 3) {
+      dispatch(startGame());
+      dispatch(savePlayerName(playerName));
+    }
+  };
+  const handleOnInput = ({ target: { value }}) => {
+    setPlayerName(value);
+  }
   return (
     <div>
     <h2>InitialScreen</h2>
@@ -22,9 +36,18 @@ export const InitialScreen = () => {
         />
       </StyledBoardContainer>
       <StyledDataContainer>
-        <StyledLabel>Player Name</StyledLabel>
-        <Input placeholder="Please write your name"/>
-        <Button>START GAME</Button>
+        <StyledLabel htmlFor="player">Player Name</StyledLabel>
+        <Input
+          value={playerName}
+          onInput={handleOnInput}
+          placeholder="Must have four or more characters"
+          id="player"
+          name="player"
+        />
+        <Button
+          onClick={handleOnStart}
+          disabled={playerName.length < 4}
+        >START GAME</Button>
       </StyledDataContainer>
     </StyledInitialScreenContainer>
     </div>
