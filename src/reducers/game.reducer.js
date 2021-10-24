@@ -1,5 +1,5 @@
 const initialState = {
-  status: null, // InProgress - Finished - Surrender
+  status: null, // InProgress - Surrender - Won - Lost
   player: {
     name: '',
   }

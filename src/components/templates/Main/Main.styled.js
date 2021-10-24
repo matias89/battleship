@@ -13,3 +13,9 @@ export const StyledMainTitle = styled.h1`
   text-transform: uppercase;
   color: ${colors.primary};
 `;
+
+export const StyledMainHeader = styled.header`
+  background: #f5f5f5;
+  padding: 10px;
+  border: 1px solid #ccc;
+`;
