@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { InitialScreen } from '@components/organisms/InitialScreen/InitialScreen.component';
-import { StyledMainContainer } from './Main.styled';
+import { GameScreen } from '@components/organisms/GameScreen/GameScreen.component';
+import { StyledMainContainer, StyledMainTitle } from './Main.styled';
 
 const Main = () => {
   const { gameReducer } = useSelector(state => ({
@@ -10,9 +11,10 @@ const Main = () => {
   return (
     <StyledMainContainer>
       <header>
-        <h1>Battleship Game</h1>
+        <StyledMainTitle>Battleship Game</StyledMainTitle>
       </header>
       {!status && <InitialScreen />}
+      {status === 'InProgress' && <GameScreen />}
     </StyledMainContainer>
   );
 };
