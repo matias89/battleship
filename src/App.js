@@ -1,12 +1,10 @@
-import { Board } from '@components/molecules/Board/Board.component';
+import Providers from '@components/Providers/Providers';
+import Main from '@components/templates/Main/Main.component';
 function App() {
   return (
-    <div>
-    <Board
-      x={10}
-      y={10}
-    />
-    </div>
+    <Providers>
+    <Main />
+    </Providers>
   );
 }
 
