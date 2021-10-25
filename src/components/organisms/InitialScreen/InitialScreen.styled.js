@@ -2,10 +2,11 @@ import styled from 'styled-components';
 
 export const StyledInitialScreenContainer = styled.div`
   display: flex;
+  flex-wrap: wrap;
 `;
 
 export const StyledBoardContainer = styled.div`
-  flex: 1;
+  flex: 2;
   padding: 10px;
 `;
 

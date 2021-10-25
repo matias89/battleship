@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { startGame, savePlayerName } from '@actions/game.actions'
+import { startGame, savePlayerName, savePlayerBoard } from '@actions/game.actions'
 import { Input } from '@components/atoms/Input/Input.component';
 import { Button } from '@components/atoms/Button/Button.component';
 import { Board } from '@components/molecules/Board/Board.component';
@@ -13,19 +13,22 @@ import {
 
 export const InitialScreen = () => {
   const [playerName, setPlayerName] = useState('');
+  const [playerBoard, setPlayerBoard] = useState([]);
   const dispatch = useDispatch();
   const handleOnStart = () => {
     if (playerName.length > 3) {
       dispatch(startGame());
       dispatch(savePlayerName(playerName));
+      dispatch(savePlayerBoard(playerBoard));
     }
   };
   const handleOnInput = ({ target: { value }}) => {
     setPlayerName(value);
   }
+  const onGenerateBoard = (board) => setPlayerBoard(board);
   return (
     <div>
-    <h2>InitialScreen</h2>
+    <h2>Let's play!</h2>
     <p>Place your ships on the board, enter a player name and let's play :)</p>
     <hr />
     <StyledInitialScreenContainer>
@@ -33,6 +36,8 @@ export const InitialScreen = () => {
         <Board
           x={10}
           y={10}
+          allowGenerate
+          onGenerateBoard={onGenerateBoard}
         />
       </StyledBoardContainer>
       <StyledDataContainer>

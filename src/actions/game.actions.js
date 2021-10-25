@@ -15,3 +15,10 @@ export const endGame = (status) => ({
     status,
   }
 });
+
+export const savePlayerBoard = (board) => ({
+  type: 'FILL_PLAYER_BOARD',
+  payload: {
+    board,
+  }
+});

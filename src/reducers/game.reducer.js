@@ -2,6 +2,10 @@ const initialState = {
   status: null, // InProgress - Surrender - Won - Lost
   player: {
     name: '',
+  },
+  boards: {
+    player: [],
+    cpu: [],
   }
 };
 
@@ -26,6 +30,15 @@ export const gameReducer = (state = initialState, action) => {
       return {
         ...state,
         status: action.payload.status,
+      }
+    }
+    case 'FILL_PLAYER_BOARD': {
+      return {
+        ...state,
+        boards: {
+          ...state.boards,
+          player: action.payload.board,
+        }
       }
     }
     default:
