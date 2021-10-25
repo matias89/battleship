@@ -13,7 +13,7 @@ export const GameScreen = () => {
   const { gameReducer } = useSelector(state => ({
     gameReducer: state.gameReducer,
   }));
-  const { player: { name } } = gameReducer;
+  const { player: { name }, boards: { player } } = gameReducer;
   const handleOnSurrender = () => dispatch(endGame('Surrender'));
   return (
     <>
@@ -30,7 +30,7 @@ export const GameScreen = () => {
       <StyledGameScreenContainer>
         <StyledGameScreenColumn>
           <h3>{name}</h3>
-          <Board x={10} y={10} />
+          <Board x={10} y={10} fillBoard={player} />
         </StyledGameScreenColumn>
         <StyledGameScreenColumn>
           <h3>CPU player</h3>

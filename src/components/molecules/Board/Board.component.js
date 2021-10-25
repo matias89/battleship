@@ -27,37 +27,38 @@ const createBoard = (x, y) => {
   }
 };
 
-export const Board = ({ x, y, allowGenerate, onGenerateBoard = () => {} }) => {
+export const Board = ({ x, y, allowGenerate, onGenerateBoard = () => {}, fillBoard }) => {
   const { square: { width, height } } = sizes;
   const { board, squares } = createBoard(x, y);
   const { takenSquares, generateShips } = useSquares(squares);
   const handleOnGenerate = () => {
     generateShips(ships);
-    onGenerateBoard(takenSquares);
-  }
+  };
+
   useEffect(() => {
-    handleOnGenerate();
-  }, []);
+    onGenerateBoard(takenSquares);
+  }, [takenSquares]);
 
   const buildBoard = () => {
     let i = 0;
+    const boardData = fillBoard || takenSquares;
     return board.map((row, key) => {
       return (
         <StyledBoardRow key={key}>
-            {row.map((col, index) => {
-              i++;
-              return (
-                <Square
-                  width={width}
-                  height={height}
-                  key={index}
-                  status={'HIT'} // analizar si acá podrian estar los estados ...
-                  value={takenSquares[i - 1]?.status}
-                  color={takenSquares[i - 1]?.color}
-                />
-              );
-            })}
-          </StyledBoardRow>
+          {row.map((col, index) => {
+            i++;
+            return (
+              <Square
+                width={width}
+                height={height}
+                key={index}
+                status={'HIT'} // analizar si acá podrian estar los estados ...
+                value={boardData[i - 1]?.status}
+                color={boardData[i - 1]?.color}
+              />
+            );
+          })}
+        </StyledBoardRow>
       );
     });
   }
@@ -69,7 +70,7 @@ export const Board = ({ x, y, allowGenerate, onGenerateBoard = () => {} }) => {
           <Button
             variant="warning"
             onClick={handleOnGenerate}
-          >CHANGE SHIPS POSITIONS</Button>
+          >{takenSquares.length ? 'CHANGE' : 'ADD'} SHIPS POSITIONS</Button>
         </StyledBoardHeader>
       )}
       {buildBoard()}

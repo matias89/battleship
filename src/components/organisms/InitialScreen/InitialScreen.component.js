@@ -14,6 +14,7 @@ import {
 export const InitialScreen = () => {
   const [playerName, setPlayerName] = useState('');
   const [playerBoard, setPlayerBoard] = useState([]);
+  const [boardStatus, setBoardStatus] = useState(false);
   const dispatch = useDispatch();
   const handleOnStart = () => {
     if (playerName.length > 3) {
@@ -25,11 +26,16 @@ export const InitialScreen = () => {
   const handleOnInput = ({ target: { value }}) => {
     setPlayerName(value);
   }
-  const onGenerateBoard = (board) => setPlayerBoard(board);
+  const onGenerateBoard = (board) => {
+    if (board.length) {
+      setPlayerBoard(board);
+      setBoardStatus(true);
+    }
+  };
   return (
     <div>
     <h2>Let's play!</h2>
-    <p>Place your ships on the board, enter a player name and let's play :)</p>
+    <p>Before START GAME you must add the ships positions on board and write your player name. Enjoy :)</p>
     <hr />
     <StyledInitialScreenContainer>
       <StyledBoardContainer>
@@ -51,7 +57,7 @@ export const InitialScreen = () => {
         />
         <Button
           onClick={handleOnStart}
-          disabled={playerName.length < 4}
+          disabled={playerName.length < 4 || !boardStatus}
           variant="primary"
         >START GAME</Button>
       </StyledDataContainer>
