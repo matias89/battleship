@@ -37,8 +37,27 @@ export const useSquares = (squares) => {
     });
     setTakenSquares(t);
   }
+
+  
   return {
     generateShips,
     takenSquares,
   }
+}
+
+export const useRandom = () => {
+  let randomNumber = Math.floor(Math.random() * 100);
+  const usedNumbers = [];
+  const generateRandomNumber = () => {
+    randomNumber = Math.floor(Math.random() * 100);
+    if (usedNumbers.find(item => item === randomNumber)) {
+      generateRandomNumber();
+    } else {
+      usedNumbers.push(randomNumber);
+    }
+    return randomNumber;
+  }
+  return [
+    generateRandomNumber,
+  ]
 }

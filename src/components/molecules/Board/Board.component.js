@@ -1,33 +1,28 @@
 import { useEffect } from 'react';
 import { Square } from '@components/atoms/Square/Square.component';
 import { Button } from '@components/atoms/Button/Button.component';
+
 import { sizes, ships } from '@constants';
+import { createBoard } from '@utils/gameHelper/gameHelper.util';
 import { useSquares } from '@hooks/useBoard';
 import {
   StyledBoardContainer,
   StyledBoardRow,
   StyledBoardHeader,
+  StyledBoardBlocked,
 } from './Board.styled';
 
-const createBoard = (x, y) => {
-  const board = [];
-  const squares = [];
-  for (let i = 0; i < x; i++) {
-    board[i] = [];
-    for (let j = 0; j < y; j++) {
-      board[i][j] = `${i} ${j}`; // analizar si acá podrian estar los estados ...
-      squares.push({
-        value: `${i}${j}`,
-      });
-    }
-  }
-  return {
-    board,
-    squares,
-  }
-};
-
-export const Board = ({ x, y, allowGenerate, onGenerateBoard = () => {}, fillBoard }) => {
+export const Board = ({
+  x,
+  y,
+  allowGenerate,
+  onGenerateBoard = () => {},
+  fillBoard,
+  enableActions = false,
+  onShot = () => {},
+  showShips = false,
+  blocked = false,
+}) => {
   const { square: { width, height } } = sizes;
   const { board, squares } = createBoard(x, y);
   const { takenSquares, generateShips } = useSquares(squares);
@@ -47,14 +42,25 @@ export const Board = ({ x, y, allowGenerate, onGenerateBoard = () => {}, fillBoa
         <StyledBoardRow key={key}>
           {row.map((col, index) => {
             i++;
-            return (
+            const info = boardData[i - 1];
+            return showShips ? (
               <Square
                 width={width}
                 height={height}
                 key={index}
-                status={'HIT'} // analizar si acá podrian estar los estados ...
-                value={boardData[i - 1]?.status}
-                color={boardData[i - 1]?.color}
+                info={info}
+                color={info?.color}
+                enableActions={enableActions}
+                onClick={() => onShot(info)}
+              />
+            ) : (
+              <Square
+                width={width}
+                height={height}
+                key={index}
+                info={info}
+                enableActions={enableActions}
+                onClick={() => onShot(info)}
               />
             );
           })}
@@ -65,6 +71,7 @@ export const Board = ({ x, y, allowGenerate, onGenerateBoard = () => {}, fillBoa
   
   return (
     <StyledBoardContainer>
+      {blocked && <StyledBoardBlocked />}
       {allowGenerate && (
         <StyledBoardHeader>
           <Button
