@@ -24,4 +24,8 @@ export const StyledSquareContainer = styled.div(({
     }
     `
   )}
+  @media (max-width: 500px) {
+    width: ${width - 18}px;
+  height: ${height - 18}px;
+  }
 `);
