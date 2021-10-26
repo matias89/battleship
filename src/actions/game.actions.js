@@ -15,3 +15,37 @@ export const endGame = (status) => ({
     status,
   }
 });
+
+export const savePlayerBoard = (board) => ({
+  type: 'FILL_PLAYER_BOARD',
+  payload: {
+    board,
+  }
+});
+
+export const saveCpuBoard = (board) => ({
+  type: 'FILL_CPU_BOARD',
+  payload: {
+    board,
+  }
+});
+
+export const saveShot = (position, player) => ({
+  type: 'SAVE_SHOT',
+  payload: {
+    position,
+    player, // player or cpu
+  }
+});
+
+export const failedShot = (position, player) => ({
+  type: 'FAILED_SHOT',
+  payload: {
+    position,
+    player, // player or cpu
+  }
+});
+
+export const resetGame = (position, player) => ({
+  type: 'RESET_GAME',
+});

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '@components/atoms/Button/Button.component';
-import { startGame } from '@actions/game.actions';
+import { resetGame } from '@actions/game.actions';
 
 export const FinalScreen = () => {
   const dispatch = useDispatch();
@@ -9,7 +9,7 @@ export const FinalScreen = () => {
   }));
   const { status } = gameReducer;
 
-  const handleOnRestart = () => dispatch(startGame());
+  const handleOnRestart = () => dispatch(resetGame());
 
   let message;
   switch (status) {

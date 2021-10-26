@@ -3,7 +3,7 @@ import { colors } from '@constants/';
 
 export const StyledButton = styled.button(({ variant }) => css`
   background-color: ${colors[variant]};
-  color: white;
+  color: ${variant === 'warning' ? '#000' : '#fff'};
   cursor: pointer;
   padding: 10px;
   border: 1px solid #ccc;
