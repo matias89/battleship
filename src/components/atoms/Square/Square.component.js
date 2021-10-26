@@ -19,6 +19,6 @@ export const Square = ({
       color={color}
       enableActions={status !== 'killed' && status !== 'failed' && enableActions}
       onClick={status !== 'killed' && status !== 'failed' ? onClick : () => {}}
-    >{value}</StyledSquareContainer>
+    />
   );
 };
